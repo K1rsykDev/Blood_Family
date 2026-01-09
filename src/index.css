@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Blood Family - Dark Crimson Theme */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 60% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 20% 20%;
+    --input: 0 20% 15%;
+    --ring: 0 72% 51%;
+
+    --radius: 0.75rem;
+
+    /* Custom Blood Family tokens */
+    --blood-red: 0 72% 51%;
+    --blood-dark: 0 80% 30%;
+    --blood-glow: 0 100% 60%;
+    --crimson: 348 83% 47%;
+    --gold: 45 93% 47%;
+    --snow: 210 40% 98%;
+
+    /* Gradients */
+    --gradient-blood: linear-gradient(135deg, hsl(0 80% 30%) 0%, hsl(0 72% 51%) 50%, hsl(348 83% 47%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(0 72% 51% / 0.3) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-blood: 0 0 30px hsl(0 72% 51% / 0.4);
+    --shadow-glow: 0 0 60px hsl(0 100% 60% / 0.3);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.5);
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 72% 51%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 20% 20%;
+    --sidebar-ring: 0 72% 51%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 60% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 20% 20%;
+    --input: 0 20% 15%;
+    --ring: 0 72% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background: var(--gradient-dark);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .blood-glow {
+    box-shadow: var(--shadow-blood);
+  }
+
+  .blood-glow-strong {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient-blood {
+    background: var(--gradient-blood);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-blood {
+    background: var(--gradient-blood);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .card-blood {
+    @apply bg-card border border-border rounded-xl;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .btn-blood {
+    @apply relative overflow-hidden px-8 py-4 font-display font-bold text-lg uppercase tracking-wider;
+    background: var(--gradient-blood);
+    transition: all 0.3s ease;
+  }
+
+  .btn-blood:hover {
+    box-shadow: var(--shadow-blood);
+    transform: translateY(-2px);
+  }
+
+  .btn-blood::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-blood:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Garland lights */
+  .garland {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .garland-light {
+    width: 12px;
+    height: 20px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+
+  .garland-light:nth-child(odd) {
+    background: hsl(var(--blood-red));
+    animation-delay: 0s;
+  }
+
+  .garland-light:nth-child(even) {
+    background: hsl(var(--gold));
+    animation-delay: 0.75s;
+  }
+
+  .garland-light:nth-child(3n) {
+    background: hsl(120 60% 50%);
+    animation-delay: 0.5s;
+  }
+
+  @keyframes glow {
+    0% {
+      opacity: 0.4;
+      box-shadow: 0 0 5px currentColor;
+    }
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+  }
+
+  /* Snow animation */
+  .snowflake {
+    position: fixed;
+    color: hsl(var(--snow));
+    font-size: 1rem;
+    pointer-events: none;
+    animation: fall linear infinite;
+    z-index: 1000;
+    opacity: 0.8;
+  }
+
+  .snowflake-interactive {
+    position: fixed;
+    color: hsl(var(--snow));
+    font-size: 1rem;
+    pointer-events: none;
+    animation: fall-wind linear infinite;
+    z-index: 1000;
+    opacity: 0.8;
+    --wind-offset: 0px;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(calc(100vh + 50px)) rotate(360deg);
+    }
+  }
+
+  @keyframes fall-wind {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(calc(100vh + 50px)) translateX(var(--wind-offset)) rotate(360deg);
+    }
+  }
+
+  /* Pulse animation for CTA */
+  .pulse-blood {
+    animation: pulse-blood 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-blood {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(0 72% 51% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 20px hsl(0 72% 51% / 0);
+    }
+  }
+
+  /* Fade in animations */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
+
+  /* Glowing nickname effect */
+  .nickname-glow {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor;
+    animation: nicknameGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes nicknameGlow {
+    0% {
+      text-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+      filter: brightness(1);
+    }
+    100% {
+      text-shadow: 
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor,
+        0 0 60px currentColor;
+      filter: brightness(1.2);
+    }
+  }
+
+  .nickname-gradient-glow {
+    animation: gradientGlow 2s ease-in-out infinite alternate;
+    text-shadow: 
+      0 0 10px var(--glow-color-start),
+      0 0 20px var(--glow-color-start),
+      0 0 30px var(--glow-color-end),
+      0 0 40px var(--glow-color-end);
+  }
+
+  @keyframes gradientGlow {
+    0% {
+      filter: brightness(1);
+      text-shadow: 
+        0 0 5px var(--glow-color-start),
+        0 0 10px var(--glow-color-start),
+        0 0 20px var(--glow-color-end);
+    }
+    100% {
+      filter: brightness(1.2);
+      text-shadow: 
+        0 0 10px var(--glow-color-start),
+        0 0 25px var(--glow-color-start),
+        0 0 40px var(--glow-color-end),
+        0 0 60px var(--glow-color-end);
+    }
+  }
+}
